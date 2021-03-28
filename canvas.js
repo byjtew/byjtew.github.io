@@ -110,7 +110,7 @@ function init() {
         let dirX = 3*Math.random() - randomFactor;
         let dirY = 3*Math.random() - randomFactor;
 
-        let image = `/static/icons/tokens/${files[Math.floor(Math.random() * files.length)]}.svg`
+        let image = `${files[Math.floor(Math.random() * files.length)]}.svg`
         //console.log(`Randomly picked image: ${image} at [${x}, ${y}]`);
 
         particlesArray.push(new Particle(x, y, dirX, dirY, size, image))
