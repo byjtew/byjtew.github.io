@@ -69,7 +69,7 @@ var Boid = Base.extend({
 			this.shortPath.add(new Point());
         
         size = 20;
-        this.head = new Raster("../static/icons/tokens/BTC.svg");
+        this.head = new Raster("/static/icons/tokens/BTC.svg");
         this.head.fitBounds(new Rectangle(0, 0, size, size))
         /*new Shape.Ellipse({
             center: [0, 0],
