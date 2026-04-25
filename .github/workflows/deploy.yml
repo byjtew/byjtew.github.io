@@ -98,8 +98,26 @@ jobs:
 
       - name: Assemble final Pages output
         run: |
+          set -euo pipefail
+
+          if [ -f house_to_street_dist/index.html ]; then
+            SOURCE_DIR="house_to_street_dist"
+          elif [ -f house_to_street_dist/dist/index.html ]; then
+            SOURCE_DIR="house_to_street_dist/dist"
+          else
+            echo "Could not find house_to_street build index.html in downloaded artifact"
+            echo "Artifact tree:"
+            find house_to_street_dist -maxdepth 3 -print
+            exit 1
+          fi
+
           mkdir -p _site/house_to_street
-          cp -R house_to_street_dist/. _site/house_to_street/
+          cp -R "$SOURCE_DIR"/. _site/house_to_street/
+
+          if [ ! -f _site/house_to_street/index.html ]; then
+            echo "Packaging failed: _site/house_to_street/index.html is missing"
+            exit 1
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
