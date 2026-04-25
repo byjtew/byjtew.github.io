@@ -11,10 +11,10 @@ social:
 projects:
   - title: "OSM - House to street proximity"
     subtitle: "Interactive house-street proximity explorer, using OpenStreetMap data and PMTiles."
-    summary: "Geo-spatial visualisation tool that computes how close each building wall is to nearby roads from OSM data, then renders multi-zoom PMTiles layers in a fast static web page."
+    summary: "Geo-spatial visualisation tool that computes how close each houses wall is to nearby roads from OSM data, then renders multi-zoom PMTiles layers in a fast static web page."
     links:
       repo: "https://github.com/byjtew/osm_house_to_street"
       demo: "https://byjtew.github.io/house_to_street"
     image:
-      url: "osm_wall_to_street__lausanne.png"
-      alt: "OSM wall-to-street interactive map"
+      url: "osm_house_to_street__lausanne.png"
+      alt: "OSM house-to-street interactive map"
