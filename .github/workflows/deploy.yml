@@ -15,11 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-site:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -30,9 +27,6 @@ jobs:
         with:
           node-version: 24
           cache: npm
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
 
       - name: Install dependencies
         run: npm ci
@@ -51,23 +45,78 @@ jobs:
           SOCIAL_EMAIL_URL: ${{ vars.SOCIAL_EMAIL_URL }}
           PROJECTS_JSON: ${{ secrets.PROJECTS_JSON != '' && secrets.PROJECTS_JSON || vars.PROJECTS_JSON }}
 
-      - name: Clone osm_wall_to_street
-        run: git clone --depth 1 --single-branch https://github.com/byjtew/osm_wall_to_street.git external/osm_wall_to_street
+      - name: Upload main site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-build
+          path: ./_site
+          if-no-files-found: error
 
-      - name: Install and build osm_wall_to_street
-        working-directory: external/osm_wall_to_street/webapp
+  build-osm-house-to-street:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone osm_house_to_street
+        run: git clone --depth 1 --single-branch https://github.com/byjtew/osm_house_to_street.git source
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: source/webapp/package-lock.json
+
+      - name: Install and build osm_house_to_street
+        working-directory: source/webapp
         run: npm ci && npm run build
 
-      - name: Copy artifact osm_wall_to_street
+      - name: Upload osm_house_to_street artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: house-to-street-build
+          path: source/webapp/dist
+          if-no-files-found: error
+
+  package:
+    runs-on: ubuntu-latest
+    needs:
+      - build-site
+      - build-osm-house-to-street
+
+    steps:
+      - name: Download main site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-build
+          path: _site
+
+      - name: Download osm_house_to_street artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: house-to-street-build
+          path: house_to_street_dist
+
+      - name: Assemble final Pages output
         run: |
           mkdir -p _site/house_to_street
-          cp -R external/osm_wall_to_street/webapp/dist/. _site/house_to_street/
+          cp -R house_to_street_dist/. _site/house_to_street/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: package
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
