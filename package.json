@@ -1,0 +1,16 @@
+{
+  "name": "byjtew-github-io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Env-driven personal site built with Eleventy",
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "dotenv": "^16.4.5",
+    "js-yaml": "^4.1.0"
+  }
+}

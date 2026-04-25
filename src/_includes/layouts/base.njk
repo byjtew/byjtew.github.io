@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ pageTitle or site.title }}</title>
+    <meta name="description" content="{{ pageDescription or site.description }}">
+    {% if site.url %}
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    {% endif %}
+    <meta property="og:title" content="{{ pageTitle or site.title }}">
+    <meta property="og:description" content="{{ pageDescription or site.description }}">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-nav">
+        <div class="site-brand">{{ site.handle }}</div>
+        <div class="site-nav-right">
+          <nav class="site-links" aria-label="Primary">
+            <a href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>Home</a>
+            <a href="/projects/" {% if page.url == "/projects/" %}aria-current="page"{% endif %}>Projects</a>
+          </nav>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
+            <i class="fa-solid fa-moon" aria-hidden="true"></i>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        {{ content | safe }}
+      </main>
+
+      <footer class="site-footer">
+        <small>{{ site.name }} · {{ site.currentYear }}</small>
+      </footer>
+    </div>
+    <script>
+      (function () {
+        const key = "site-theme";
+        const root = document.documentElement;
+        const toggle = document.getElementById("theme-toggle");
+        const icon = toggle ? toggle.querySelector("i") : null;
+
+        function applyTheme(theme) {
+          const isDark = theme === "dark";
+          root.setAttribute("data-theme", isDark ? "dark" : "light");
+
+          if (icon) {
+            icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+          }
+
+          if (toggle) {
+            const nextLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
+            toggle.setAttribute("aria-label", nextLabel);
+            toggle.setAttribute("title", nextLabel);
+          }
+        }
+
+        const saved = localStorage.getItem(key);
+        applyTheme(saved === "dark" ? "dark" : "light");
+
+        if (toggle) {
+          toggle.addEventListener("click", function () {
+            const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
+            const next = current === "dark" ? "light" : "dark";
+            localStorage.setItem(key, next);
+            applyTheme(next);
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

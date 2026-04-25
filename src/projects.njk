@@ -1,0 +1,60 @@
+---
+layout: layouts/base.njk
+permalink: /projects/
+pageTitle: "Projects"
+pageDescription: "Selected projects and experiments"
+---
+
+<section class="hero" aria-labelledby="projects-title">
+  <h1 id="projects-title">Projects</h1>
+  <p>A longer look at selected projects, outcomes, and implementation details.</p>
+</section>
+
+<section class="editorial-list" aria-label="Project entries">
+  {% for project in site.projects %}
+  <article class="editorial-item">
+    <div class="editorial-grid">
+      <div class="copy">
+        <h2>{{ project.title }}</h2>
+        {% if project.subtitle %}<p class="project-subtitle">{{ project.subtitle }}</p>{% endif %}
+        <p class="project-summary">{{ project.summary }}</p>
+
+        {% if project.highlights.length %}
+        <ul class="highlights">
+          {% for item in project.highlights %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% set hasLinks = project.links.repo or project.links.demo or project.links.article %}
+        {% if hasLinks %}
+        <div class="badges" aria-label="Project links">
+          {% if project.links.repo %}<a href="{{ project.links.repo }}" target="_blank" rel="noreferrer">Repository</a>{% endif %}
+          {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noreferrer">Live Demo</a>{% endif %}
+          {% if project.links.article %}<a href="{{ project.links.article }}" target="_blank" rel="noreferrer">Case Study</a>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+
+      {% set projectPrimaryLink = project.links.demo or project.links.repo or project.links.article %}
+      {% if project.media.url %}
+        {% if projectPrimaryLink and project.media.type != "video" %}
+        <a class="media-wrap project-media-link" href="{{ projectPrimaryLink }}" target="_blank" rel="noreferrer" aria-label="Open {{ project.title }}">
+          <img src="{{ project.media.url }}" alt="{{ project.media.alt }}" loading="lazy">
+          <span class="media-hover">Open project</span>
+        </a>
+        {% else %}
+        <div class="media-wrap">
+          {% if project.media.type == "video" %}
+          <video controls preload="metadata" src="{{ project.media.url }}" aria-label="{{ project.media.alt }}"></video>
+          {% else %}
+          <img src="{{ project.media.url }}" alt="{{ project.media.alt }}" loading="lazy">
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>

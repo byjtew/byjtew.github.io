@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+permalink: /
+pageTitle: "Home"
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">{{ site.name }}<br>{{ site.handle }}</h1>
+  <p>{{ site.bio }}</p>
+  <div class="social-row" aria-label="Social links">
+    {% for social in site.socials %}
+    <a href="{{ social.url }}" target="_blank" rel="noreferrer">
+      <span class="social-icon" aria-hidden="true">
+        <i class="{{ social.iconClass or 'fa-solid fa-link' }}"></i>
+      </span>
+      <span>{{ social.label }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>

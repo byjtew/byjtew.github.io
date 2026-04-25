@@ -1,0 +1,73 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+        env:
+          SITE_NAME: ${{ vars.SITE_NAME }}
+          SITE_HANDLE: ${{ vars.SITE_HANDLE }}
+          SITE_BIO: ${{ vars.SITE_BIO }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_TITLE: ${{ vars.SITE_TITLE }}
+          SITE_DESCRIPTION: ${{ vars.SITE_DESCRIPTION }}
+          SOCIAL_GITHUB_URL: ${{ vars.SOCIAL_GITHUB_URL }}
+          SOCIAL_LINKEDIN_URL: ${{ vars.SOCIAL_LINKEDIN_URL }}
+          SOCIAL_EMAIL_URL: ${{ vars.SOCIAL_EMAIL_URL }}
+          PROJECTS_JSON: ${{ secrets.PROJECTS_JSON != '' && secrets.PROJECTS_JSON || vars.PROJECTS_JSON }}
+
+      - name: Clone osm_wall_to_street
+        run: git clone --depth 1 --single-branch https://github.com/byjtew/osm_wall_to_street.git external/osm_wall_to_street
+
+      - name: Install and build osm_wall_to_street
+        working-directory: external/osm_wall_to_street/webapp
+        run: npm ci && npm run build
+
+      - name: Copy artifact osm_wall_to_street
+        run: |
+          mkdir -p _site/house_to_street
+          cp -R external/osm_wall_to_street/webapp/dist/. _site/house_to_street/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
