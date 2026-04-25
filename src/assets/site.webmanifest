@@ -1,0 +1,22 @@
+{
+	"name": "Benjamin Lozes",
+	"short_name": "byjtew",
+	"description": "Personal site and selected projects by Benjamin Lozes.",
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"theme_color": "#1749d2",
+	"background_color": "#f8f6f0",
+	"icons": [
+		{
+			"src": "/assets/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/assets/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
+}
