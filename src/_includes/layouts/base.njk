@@ -3,17 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ pageTitle or site.title }}</title>
+    <meta name="keywords" content="byjtew, Benjamin Lozes, Benjamin, Lozes, OpenStreetMap, OSM, Building Setback, Road Proximity, Last Mile Analysis, Geospatial Distance, Urban Morphology, Building Footprints, Street Network Analysis, GIS Tool, Driveway Extraction, Spatial Join, Distance to Road, Urban Planning Software">
+    <title>@byjtew | {{ pageTitle or site.title }}</title>
     <meta name="description" content="{{ pageDescription or site.description }}">
+    <meta property="og:title" content="{{ pageTitle or site.title }}">
+    <meta property="og:description" content="{{ pageDescription or site.description }}">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://byjtew.github.io" />
+    <meta property="og:title" content="Benjamin Lozes | @byjtew" />
+    <meta property="og:description" content="My personal website and portfolio." />
+    <meta property="og:image" content="https://byjtew.github.io/assets/images/osm_house_to_street_denver_viridis.webp" />
+    <meta property="og:image:alt" content="Pretty screenshot of my visualisations" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://byjtew.github.io/assets/images/osm_house_to_street_denver_viridis.webp" />
     {% if site.url %}
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     {% endif %}
-    <meta property="og:title" content="{{ pageTitle or site.title }}">
-    <meta property="og:description" content="{{ pageDescription or site.description }}">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/site.webmanifest">
     <link rel="stylesheet" href="/assets/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
