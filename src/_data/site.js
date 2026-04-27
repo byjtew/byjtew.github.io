@@ -182,16 +182,18 @@ function parseProjectList(rawProjects, sourceLabel) {
     const mediaUrl = pickString(mediaSource.url, imageSource.url, project.image_url);
     const mediaAlt = pickString(mediaSource.alt, imageSource.alt, project.image_alt);
     const mediaType = pickString(mediaSource.type, project.media_type) || "image";
+    const mediaGif = pickString(mediaSource.gif, imageSource.gif, project.gif_url);
 
     const normalizedMediaType = mediaType.toLowerCase();
     if (!["image", "video"].includes(normalizedMediaType)) {
-      fail(`${label}.media.type must be \"image\" or \"video\"`);
+      fail(`${label}.media.type must be "image" or "video"`);
     }
 
     const media = {
       url: parseAssetOrUrlField(`${label}.media.url`, mediaUrl),
       alt: mediaAlt,
-      type: normalizedMediaType
+      type: normalizedMediaType,
+      gif: parseAssetOrUrlField(`${label}.media.gif`, mediaGif)
     };
 
     if (media.url && !media.alt) {

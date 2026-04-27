@@ -395,6 +395,11 @@ main {
   box-shadow: 0 14px 24px rgba(23, 73, 210, 0.16);
 }
 
+.project-media-link[data-gif]:hover,
+.media-wrap[data-gif]:hover {
+  cursor: zoom-in;
+}
+
 .project-media-link:hover .media-hover,
 .project-media-link:focus-visible .media-hover {
   opacity: 1;

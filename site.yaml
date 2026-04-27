@@ -18,3 +18,4 @@ projects:
     image:
       url: "osm_house_to_street_denver_viridis.webp"
       alt: "OSM house-to-street interactive map"
+      gif: "osm_house_to_street_animated.gif"

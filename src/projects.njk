@@ -40,12 +40,12 @@ pageDescription: "Selected projects and experiments"
       {% set projectPrimaryLink = project.links.demo or project.links.repo or project.links.article %}
       {% if project.media.url %}
         {% if projectPrimaryLink and project.media.type != "video" %}
-        <a class="media-wrap project-media-link" href="{{ projectPrimaryLink }}" target="_blank" rel="noreferrer" aria-label="Open {{ project.title }}">
+        <a class="media-wrap project-media-link" href="{{ projectPrimaryLink }}" target="_blank" rel="noreferrer" aria-label="Open {{ project.title }}"{% if project.media.gif %} data-gif="{{ project.media.gif }}" data-still="{{ project.media.url }}"{% endif %}>
           <img src="{{ project.media.url }}" alt="{{ project.media.alt }}" loading="lazy">
           <span class="media-hover">Open project</span>
         </a>
         {% else %}
-        <div class="media-wrap">
+        <div class="media-wrap"{% if project.media.gif and project.media.type != "video" %} data-gif="{{ project.media.gif }}" data-still="{{ project.media.url }}"{% endif %}>
           {% if project.media.type == "video" %}
           <video controls preload="metadata" src="{{ project.media.url }}" aria-label="{{ project.media.alt }}"></video>
           {% else %}
@@ -58,3 +58,23 @@ pageDescription: "Selected projects and experiments"
   </article>
   {% endfor %}
 </section>
+
+<script>
+  document.querySelectorAll('[data-gif]').forEach(function (wrap) {
+    var img = wrap.querySelector('img');
+    if (!img) return;
+    wrap.addEventListener('mouseenter', function () {
+      img.src = wrap.dataset.gif;
+    });
+    wrap.addEventListener('mouseleave', function () {
+      img.src = wrap.dataset.still;
+    });
+  });
+
+  window.addEventListener('load', function () {
+    document.querySelectorAll('[data-gif]').forEach(function (wrap) {
+      var preload = new Image();
+      preload.src = wrap.dataset.gif;
+    });
+  });
+</script>
