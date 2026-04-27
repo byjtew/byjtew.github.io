@@ -67,7 +67,8 @@
         }
 
         const saved = localStorage.getItem(key);
-        applyTheme(saved === "dark" ? "dark" : "light");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        applyTheme(saved !== null ? (saved === "dark" ? "dark" : "light") : (prefersDark ? "dark" : "light"));
 
         if (toggle) {
           toggle.addEventListener("click", function () {

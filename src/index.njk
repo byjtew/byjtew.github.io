@@ -18,3 +18,105 @@ pageTitle: "Home"
     {% endfor %}
   </div>
 </section>
+
+{% if site.projects.length %}
+<section class="section-projects" aria-labelledby="home-projects-title">
+  <div class="section-head">
+    <h2 class="section-title" id="home-projects-title">Projects</h2>
+    <a href="/projects/">See all &rarr;</a>
+  </div>
+
+  <div class="carousel" id="projects-carousel" aria-roledescription="carousel" aria-label="Featured projects">
+    <div class="carousel-viewport">
+      <div class="carousel-track" role="list">
+        {% for project in site.projects %}
+        <div
+          class="carousel-slide"
+          role="listitem"
+          aria-label="Project {{ loop.index }} of {{ site.projects | length }}"
+          {% if loop.first %}aria-current="true"{% endif %}
+        >
+          <div class="project-card carousel-card">
+            {% set projectPrimaryLink = project.links.demo or project.links.repo or project.links.article %}
+            {% if project.media.url %}
+            <div class="carousel-card-media media-wrap">
+              {% if projectPrimaryLink %}
+              <a href="{{ projectPrimaryLink }}" target="_blank" rel="noreferrer" aria-label="Open {{ project.title }}" class="project-media-link">
+                <img src="{{ project.media.url }}" alt="{{ project.media.alt }}" loading="lazy">
+                <span class="media-hover">Open project</span>
+              </a>
+              {% else %}
+              <img src="{{ project.media.url }}" alt="{{ project.media.alt }}" loading="lazy">
+              {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="carousel-card-body">
+              <h3>{{ project.title }}</h3>
+              {% if project.subtitle %}<p class="project-subtitle">{{ project.subtitle }}</p>{% endif %}
+              <p class="project-summary">{{ project.summary }}</p>
+
+              {% set hasLinks = project.links.repo or project.links.demo or project.links.article %}
+              {% if hasLinks %}
+              <div class="badges" aria-label="Project links">
+                {% if project.links.repo %}<a href="{{ project.links.repo }}" target="_blank" rel="noreferrer">Repository</a>{% endif %}
+                {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noreferrer">Live Demo</a>{% endif %}
+                {% if project.links.article %}<a href="{{ project.links.article }}" target="_blank" rel="noreferrer">Case Study</a>{% endif %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if site.projects.length > 1 %}
+    <div class="carousel-controls" aria-label="Carousel controls">
+      <button class="carousel-btn carousel-prev" type="button" aria-label="Previous project">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+      </button>
+      <div class="carousel-dots" aria-hidden="true">
+        {% for project in site.projects %}
+        <span class="carousel-dot{% if loop.first %} active{% endif %}"></span>
+        {% endfor %}
+      </div>
+      <button class="carousel-btn carousel-next" type="button" aria-label="Next project">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (function () {
+    const carousel = document.getElementById("projects-carousel");
+    if (!carousel) return;
+
+    const track = carousel.querySelector(".carousel-track");
+    const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
+    const dots = Array.from(carousel.querySelectorAll(".carousel-dot"));
+    const prevBtn = carousel.querySelector(".carousel-prev");
+    const nextBtn = carousel.querySelector(".carousel-next");
+
+    if (slides.length <= 1) return;
+
+    let current = 0;
+
+    function goTo(index) {
+      slides[current].removeAttribute("aria-current");
+      if (dots[current]) dots[current].classList.remove("active");
+
+      current = (index + slides.length) % slides.length;
+
+      track.style.transform = "translateX(-" + (current * 100) + "%)";
+      slides[current].setAttribute("aria-current", "true");
+      if (dots[current]) dots[current].classList.add("active");
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(current + 1); });
+  })();
+</script>
+{% endif %}
