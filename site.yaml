@@ -16,5 +16,5 @@ projects:
       repo: "https://github.com/byjtew/osm_house_to_street"
       demo: "https://byjtew.github.io/house_to_street"
     image:
-      url: "osm_house_to_street__lausanne.png"
+      url: "osm_house_to_street_denver_viridis.webp"
       alt: "OSM house-to-street interactive map"
