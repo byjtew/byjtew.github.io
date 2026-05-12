@@ -433,6 +433,14 @@ main {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 1.75rem;
   }
+
+  .editorial-item:nth-child(even) .copy {
+    order: 2;
+  }
+
+  .editorial-item:nth-child(even) .media-wrap {
+    order: 1;
+  }
 }
 
 @media (max-width: 40rem) {
