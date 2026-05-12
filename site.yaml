@@ -9,6 +9,21 @@ social:
   mastodon_url: "https://mastodon.social/@byjtew"
 
 projects:
+  - title: "SBB for Komoot"
+    subtitle: "Bridging SBB with Komoot for lazy hikers."
+    summary: "Browser extension adding SBB/CFF/FFS (Swiss Federal Railways) route planning to Komoot, published for both Firefox and Chrome."
+    highlights:
+      - "Developed with Aloha Churchill for our shared hikes"
+      - "Built using extensions.js for cross-browser compatibility"
+      - "Published on both Firefox Add-ons and Chrome Web Store"
+    links:
+      repo: "https://github.com/sbb_for_komoot/sbb_for_komoot"
+      firefox_addon: "https://addons.mozilla.org/en-GB/firefox/addon/sbb_for_komoot/"
+      chrome_addon: "https://chromewebstore.google.com/detail/sbb_for_komoot"
+    image:
+      url: "https://github.com/sbb_for_komoot/sbb_for_komoot/public/image.png?raw=true"
+      alt: "SBB for Komoot browser extension screenshot"
+
   - title: "OSM - House to street proximity"
     subtitle: "Interactive house-street proximity explorer, using OpenStreetMap data and PMTiles."
     summary: "Geo-spatial visualisation tool that computes how close each houses wall is to nearby roads from OSM data, then renders multi-zoom PMTiles layers in a fast static web page."
@@ -19,3 +34,4 @@ projects:
       url: "osm_house_to_street_denver_viridis.webp"
       alt: "OSM house-to-street interactive map"
       gif: "osm_house_to_street_animated.gif"
+ 
