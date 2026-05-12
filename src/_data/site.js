@@ -164,7 +164,15 @@ function parseProjectList(rawProjects, sourceLabel) {
     const links = {
       repo: parseUrlField(`${label}.links.repo`, pickString(linksSource.repo, project.repo_url)),
       demo: parseUrlField(`${label}.links.demo`, pickString(linksSource.demo, project.demo_url)),
-      article: parseUrlField(`${label}.links.article`, pickString(linksSource.article, project.article_url))
+      article: parseUrlField(`${label}.links.article`, pickString(linksSource.article, project.article_url)),
+      firefoxAddon: parseUrlField(
+        `${label}.links.firefoxAddon`,
+        pickString(linksSource.firefoxAddon, linksSource.firefox_addon, project.firefox_addon_url)
+      ),
+      chromeAddon: parseUrlField(
+        `${label}.links.chromeAddon`,
+        pickString(linksSource.chromeAddon, linksSource.chrome_addon, project.chrome_addon_url)
+      )
     };
 
     const thumbnailSource = asObject(project.thumbnail) || {};

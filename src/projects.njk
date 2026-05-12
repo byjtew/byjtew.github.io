@@ -27,17 +27,19 @@ pageDescription: "Selected projects and experiments"
         </ul>
         {% endif %}
 
-        {% set hasLinks = project.links.repo or project.links.demo or project.links.article %}
+        {% set hasLinks = project.links.repo or project.links.demo or project.links.article or project.links.firefoxAddon or project.links.chromeAddon %}
         {% if hasLinks %}
         <div class="badges" aria-label="Project links">
           {% if project.links.repo %}<a href="{{ project.links.repo }}" target="_blank" rel="noreferrer">Repository</a>{% endif %}
+          {% if project.links.firefoxAddon %}<a href="{{ project.links.firefoxAddon }}" target="_blank" rel="noreferrer">Firefox add-on</a>{% endif %}
+          {% if project.links.chromeAddon %}<a href="{{ project.links.chromeAddon }}" target="_blank" rel="noreferrer">Chrome add-on</a>{% endif %}
           {% if project.links.demo %}<a href="{{ project.links.demo }}" target="_blank" rel="noreferrer">Live Demo</a>{% endif %}
           {% if project.links.article %}<a href="{{ project.links.article }}" target="_blank" rel="noreferrer">Case Study</a>{% endif %}
         </div>
         {% endif %}
       </div>
 
-      {% set projectPrimaryLink = project.links.demo or project.links.repo or project.links.article %}
+      {% set projectPrimaryLink = project.links.demo or project.links.repo or project.links.firefoxAddon or project.links.chromeAddon or project.links.article %}
       {% if project.media.url %}
         {% if projectPrimaryLink and project.media.type != "video" %}
         <a class="media-wrap project-media-link" href="{{ projectPrimaryLink }}" target="_blank" rel="noreferrer" aria-label="Open {{ project.title }}"{% if project.media.gif %} data-gif="{{ project.media.gif }}" data-still="{{ project.media.url }}"{% endif %}>
