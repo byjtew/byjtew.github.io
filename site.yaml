@@ -17,11 +17,11 @@ projects:
       - "Built using extensions.js for cross-browser compatibility"
       - "Published on both Firefox Add-ons and Chrome Web Store"
     links:
-      repo: "https://github.com/sbb_for_komoot/sbb_for_komoot"
-      firefox_addon: "https://addons.mozilla.org/en-GB/firefox/addon/sbb_for_komoot/"
-      chrome_addon: "https://chromewebstore.google.com/detail/sbb_for_komoot"
+      repo: "https://github.com/sbb-for-komoot/sbb-for-komoot"
+      firefox_addon: "https://addons.mozilla.org/en-GB/firefox/addon/sbb-for-komoot/"
+      chrome_addon: "https://chromewebstore.google.com/detail/sbb-for-komoot"
     image:
-      url: "https://github.com/sbb_for_komoot/sbb_for_komoot/public/image.png?raw=true"
+      url: "https://github.com/sbb-for-komoot/sbb-for-komoot/public/image.png?raw=true"
       alt: "SBB for Komoot browser extension screenshot"
 
   - title: "OSM - House to street proximity"
