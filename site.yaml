@@ -18,7 +18,7 @@ projects:
       - "Published on both Firefox Add-ons and Chrome Web Store"
     links:
       repo: "https://github.com/sbb-for-komoot/sbb-for-komoot"
-      firefox_addon: "https://addons.mozilla.org/en-GB/firefox/addon/sbb-for-komoot/"
+      firefox_addon: "https://addons.mozilla.org/fr/firefox/addon/sbb-for-komoot/"
       chrome_addon: "https://chromewebstore.google.com/detail/sbb-for-komoot"
     image:
       url: "https://github.com/sbb-for-komoot/sbb-for-komoot/blob/main/public/image.png?raw=true"
