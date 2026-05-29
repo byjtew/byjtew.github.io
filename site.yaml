@@ -13,7 +13,7 @@ projects:
     subtitle: "Bridging SBB with Komoot for lazy hikers."
     summary: "Browser extension adding SBB/CFF/FFS (Swiss Federal Railways) route planning to Komoot, published for both Firefox and Chrome."
     highlights:
-      - "Developed with Aloha Churchill for our shared hikes"
+      - 'Developed with <a href="https://github.com/Aloha-Churchill" target="_blank" rel="noreferrer">Aloha Churchill</a> for our shared hikes'
       - "Built using extensions.js for cross-browser compatibility"
       - "Published on both Firefox Add-ons and Chrome Web Store"
     links:
