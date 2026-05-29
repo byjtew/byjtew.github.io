@@ -22,7 +22,7 @@ pageDescription: "Selected projects and experiments"
         {% if project.highlights.length %}
         <ul class="highlights">
           {% for item in project.highlights %}
-          <li>{{ item }}</li>
+          <li>{{ item | safe }}</li>
           {% endfor %}
         </ul>
         {% endif %}
