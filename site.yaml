@@ -21,7 +21,7 @@ projects:
       firefox_addon: "https://addons.mozilla.org/firefox/addon/sbb-for-komoot/"
       chrome_addon: "https://chromewebstore.google.com/detail/sbb-for-komoot/iefcphjnomeehmcigelkbhmemcdegmjl"
     image:
-      url: "https://github.com/sbb-for-komoot/sbb-for-komoot/blob/main/public/image.png?raw=true"
+      url: "sbb_for_komoot_screenshot.png"
       alt: "SBB for Komoot browser extension screenshot"
 
   - title: "OSM - House to street proximity"
