@@ -165,6 +165,7 @@ function parseProjectList(rawProjects, sourceLabel) {
       repo: parseUrlField(`${label}.links.repo`, pickString(linksSource.repo, project.repo_url)),
       demo: parseUrlField(`${label}.links.demo`, pickString(linksSource.demo, project.demo_url)),
       article: parseUrlField(`${label}.links.article`, pickString(linksSource.article, project.article_url)),
+      product: parseUrlField(`${label}.links.product`, pickString(linksSource.product, project.product_url)),
       firefoxAddon: parseUrlField(
         `${label}.links.firefoxAddon`,
         pickString(linksSource.firefoxAddon, linksSource.firefox_addon, project.firefox_addon_url)

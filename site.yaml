@@ -9,6 +9,21 @@ social:
   mastodon_url: "https://mastodon.social/@byjtew"
 
 projects:
+  # Hidden for now — still working on it.
+  # - title: "SHOTOVER M2 Simulator"
+  #   subtitle: "A gyro-stabilized aerial camera, minus the helicopter."
+  #   summary: "Simulator for the M2 gimbal and the AIRSCAPE mission software, built end to end at SHOTOVER. Operators train against the real software; the hardware is the only part that's missing."
+  #   highlights:
+  #     - "No part of the stack knows whether it is talking to a real M2 or the simulator"
+  #     - "High-frequency IPC feeding two 2K video streams and a synthetic IR stream in parallel"
+  #     - "Connected mode pairs with MSFS 2024 and Loft Dynamics H125, so pilot and operator can train together"
+  #     - "Built-in tutorials and practice missions"
+  #   links:
+  #     product: "https://shotover.com/m2-simulator"
+  #   image:
+  #     url: "m2_simulator_placeholder.png"
+  #     alt: "Synthetic imagery from the SHOTOVER M2 Simulator"
+
   - title: "SBB for Komoot"
     subtitle: "Bridging SBB with Komoot for lazy hikers."
     summary: "Browser extension adding SBB/CFF/FFS (Swiss Federal Railways) route planning to Komoot, published for both Firefox and Chrome."
