@@ -17,15 +17,18 @@ pageDescription: "Selected projects and experiments"
       <div class="copy">
         <h2>{{ project.title }}</h2>
         {% if project.subtitle %}<p class="project-subtitle">{{ project.subtitle }}</p>{% endif %}
-        <p class="project-summary">{{ project.summary }}</p>
+        <details class="project-details" open>
+          <summary class="project-details-toggle" aria-label="Toggle description"></summary>
+          <p class="project-summary">{{ project.summary }}</p>
 
-        {% if project.highlights.length %}
-        <ul class="highlights">
-          {% for item in project.highlights %}
-          <li>{{ item | safe }}</li>
-          {% endfor %}
-        </ul>
-        {% endif %}
+          {% if project.highlights.length %}
+          <ul class="highlights">
+            {% for item in project.highlights %}
+            <li>{{ item | safe }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </details>
 
         {% set hasLinks = project.links.repo or project.links.demo or project.links.article or project.links.product or project.links.firefoxAddon or project.links.chromeAddon %}
         {% if hasLinks %}
@@ -63,6 +66,16 @@ pageDescription: "Selected projects and experiments"
 </section>
 
 <script>
+  (function () {
+    var mobile = window.matchMedia('(max-width: 40rem)');
+    var details = document.querySelectorAll('.project-details');
+    function sync() {
+      details.forEach(function (d) { d.open = !mobile.matches; });
+    }
+    sync();
+    mobile.addEventListener('change', sync);
+  })();
+
   document.querySelectorAll('[data-gif]').forEach(function (wrap) {
     var img = wrap.querySelector('img');
     if (!img) return;

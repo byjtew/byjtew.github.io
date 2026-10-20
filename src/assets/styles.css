@@ -263,14 +263,23 @@ main {
   line-height: 1.12;
 }
 
+.copy h2 {
+  margin: 0;
+  line-height: 1.12;
+}
+
 .project-subtitle {
-  margin-top: 0.35rem;
+  margin: 0.35rem 0 0;
   font-size: 0.95rem;
   color: var(--ink-muted);
 }
 
 .project-summary {
   margin: 0.9rem 0 0;
+}
+
+.project-details-toggle {
+  display: none;
 }
 
 .highlights {
@@ -337,6 +346,7 @@ main {
 
 .editorial-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.1rem;
   align-items: stretch;
 }
@@ -354,7 +364,8 @@ main {
   position: relative;
   aspect-ratio: 16 / 10;
   width: 100%;
-  height: 100%;
+  min-width: 0;
+  height: auto;
 }
 
 .media-wrap img,
@@ -442,26 +453,9 @@ main {
   .editorial-item:nth-child(even) .media-wrap {
     order: 1;
   }
-}
 
-@media (max-width: 40rem) {
-  .site-shell {
-    width: min(100% - 1.3rem, var(--max-width));
-  }
-
-  .site-nav {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .site-nav-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .section-head {
-    align-items: flex-start;
-    flex-direction: column;
+  .editorial-grid .media-wrap {
+    height: 100%;
   }
 }
 
@@ -499,6 +493,7 @@ main {
 
 .carousel-card {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
 }
 
@@ -584,5 +579,101 @@ main {
   .carousel-card-media {
     aspect-ratio: auto;
     height: 100%;
+  }
+}
+
+/* ─── Mobile ─────────────────────────────────────────── */
+@media (max-width: 40rem) {
+  .site-shell {
+    width: min(100% - 1.3rem, var(--max-width));
+    padding: 0.8rem 0;
+  }
+
+  .site-nav {
+    padding: 0.3rem 0 0.8rem;
+  }
+
+  .site-links {
+    gap: 1.4rem;
+  }
+
+  .theme-toggle {
+    display: none;
+  }
+
+  .hero {
+    padding: 1rem 0 0.8rem;
+    gap: 0.8rem;
+  }
+
+  .section-projects {
+    margin-top: 1.4rem;
+  }
+
+  .section-head {
+    margin-bottom: 0.8rem;
+  }
+
+  .carousel-card {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .carousel-card-media {
+    aspect-ratio: 21 / 9;
+  }
+
+  .carousel-card .project-summary {
+    display: none;
+  }
+
+  .carousel-card .badges {
+    margin-top: 0.6rem;
+  }
+
+  .carousel-controls {
+    margin-top: 0.7rem;
+  }
+
+  .editorial-list {
+    gap: 1.6rem;
+    margin-top: 1.2rem;
+  }
+
+  .editorial-item {
+    padding-top: 1rem;
+  }
+
+  .editorial-grid {
+    gap: 0.8rem;
+  }
+
+  .project-details-toggle {
+    display: list-item;
+    list-style: none;
+    margin-top: 0.6rem;
+    font-family: "IBM Plex Mono", "SFMono-Regular", "Menlo", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--cobalt);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .project-details-toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .project-details-toggle::before {
+    content: "+ Read more";
+  }
+
+  .project-details[open] .project-details-toggle::before {
+    content: "\2212 Show less";
+  }
+
+  .site-footer {
+    margin-top: 1rem;
+    padding-top: 0.7rem;
   }
 }
